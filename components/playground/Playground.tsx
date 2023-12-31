@@ -7,6 +7,7 @@ import {
 import useWindowDimensions from '@/hooks/useWindowdimensions';
 import { useEffect, useState } from 'react';
 import { Code } from '../Code/Code';
+import { Settings } from '../Settings/Settings';
 
 export function Playground() {
   const { height, width } = useWindowDimensions();
@@ -34,7 +35,7 @@ export function Playground() {
       <ResizableHandle withHandle />
       <ResizablePanel defaultSize={25}>
         <div className='flex h-full items-center justify-center p-6'>
-          <span className='font-semibold'>One</span>
+          <Settings />
         </div>
       </ResizablePanel>
     </ResizablePanelGroup>
