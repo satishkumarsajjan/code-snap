@@ -1,29 +1,38 @@
 'use client';
-import { useEffect, useMemo, useRef } from 'react';
-import { useCodeMirror } from '@uiw/react-codemirror';
-import { javascript } from '@codemirror/lang-javascript';
-import { okaidia } from '@uiw/codemirror-theme-okaidia';
-import { androidstudio } from '@uiw/codemirror-theme-androidstudio';
 import { useStore } from '@/hooks/store';
+import { useCodeMirror } from '@uiw/react-codemirror';
+import { useEffect, useRef } from 'react';
+import { color } from '@uiw/codemirror-extensions-color';
+import { EditorView } from '@codemirror/view';
 const code = "console.log('hello world!');\n\n\n";
 // Define the extensions outside the component for the best performance.
 // If you need dynamic extensions, use React.useMemo to minimize reference changes
 // which cause costly re-renders.
-const extensions = [javascript({ jsx: true })];
 
 interface CodeProps {}
 
 export const Code = ({}: CodeProps) => {
-  console.log(typeof androidstudio);
-  const { theme, setTheme } = useStore();
+  const { language, theme, fontSize } = useStore();
+
   const editor = useRef<HTMLDivElement>(null);
+  const customFontSize = EditorView.theme({
+    '.cm-content *': {
+      fontSize: `${fontSize}px`,
+      lineHeight: `${+fontSize * 1.5}px`,
+    },
+    '.cm-gutters': {
+      fontSize: `${fontSize}px`,
+      lineHeight: `${+fontSize * 1.5}px`,
+    },
+  });
   const { setContainer } = useCodeMirror({
     container: editor.current,
     theme: theme,
     height: '200px',
     width: '500px',
 
-    extensions,
+    extensions: [language, color, customFontSize],
+
     value: code,
   });
 

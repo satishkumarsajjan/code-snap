@@ -10,9 +10,13 @@
   },
   "dependencies": {
     "@codemirror/lang-javascript": "^6.2.1",
+    "@fontsource-variable/fira-code": "^5.0.16",
     "@radix-ui/react-menubar": "^1.0.4",
     "@radix-ui/react-select": "^2.0.0",
+    "@radix-ui/react-slider": "^1.1.2",
     "@radix-ui/react-slot": "^1.0.2",
+    "@uiw/codemirror-extensions-color": "^4.21.21",
+    "@uiw/codemirror-extensions-langs": "^4.21.21",
     "@uiw/codemirror-theme-abcdef": "^4.21.21",
     "@uiw/codemirror-theme-androidstudio": "^4.21.21",
     "@uiw/codemirror-theme-andromeda": "^4.21.21",
