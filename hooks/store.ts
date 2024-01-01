@@ -3,6 +3,9 @@ import { dracula } from '@uiw/codemirror-theme-dracula';
 
 import { Extension } from '@uiw/react-codemirror';
 import { javascript } from '@codemirror/lang-javascript';
+import { ThemeDefinition } from '@/types/types';
+import { find } from '@/lib/find';
+import { SUPPORTED_THEMES } from '@/lib/SThemes';
 
 interface Store {
   theme: Extension;
@@ -13,8 +16,8 @@ interface Store {
   setFontSize: (fontSize: string) => void;
   isLineNumber: boolean;
   setIsLineNumber: (isLineNumber: boolean) => void;
-  surroundTheme: string;
-  setSurroundTheme: (surroundTheme: string) => void;
+  surroundTheme: ThemeDefinition;
+  setSurroundTheme: (label: string) => void;
   surroundPadding: string;
   setSurroundPadding: (surroundPadding: string) => void;
 }
@@ -36,9 +39,9 @@ export const useStore = create<Store>((set) => ({
   setIsLineNumber(isLineNumber) {
     set({ isLineNumber: isLineNumber });
   },
-  surroundTheme: 'bg-gradient-to-r from-red-500 to-orange-500',
-  setSurroundTheme(surroundTheme) {
-    set({ surroundTheme: surroundTheme });
+  surroundTheme: find(SUPPORTED_THEMES, 'sky'),
+  setSurroundTheme(label) {
+    set({ surroundTheme: find(SUPPORTED_THEMES, label) });
   },
   surroundPadding: '16',
   setSurroundPadding(surroundPadding) {

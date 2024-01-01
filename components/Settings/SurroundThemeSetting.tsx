@@ -9,17 +9,17 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { useStore } from '@/hooks/store';
-import { SurroundThemes, SurroundThemesArray } from '@/lib/surroundThemes';
-
-SurroundThemes;
-SurroundThemesArray;
+import { SUPPORTED_THEMES } from '@/lib/SThemes';
 
 export const SurroundThemeSettings = () => {
   const { setSurroundTheme } = useStore();
 
   return (
     <Select
-      onValueChange={(value) => setSurroundTheme(SurroundThemes.get(value))}
+      onValueChange={(value) => {
+        console.log(value);
+        setSurroundTheme(value);
+      }}
     >
       <SelectTrigger className='w-[180px]'>
         <SelectValue placeholder='Select a surround theme' />
@@ -27,9 +27,9 @@ export const SurroundThemeSettings = () => {
       <SelectContent>
         <SelectGroup>
           <SelectLabel>Surround Themes</SelectLabel>
-          {SurroundThemesArray.map((theme, key) => (
-            <SelectItem value={theme.value} key={key}>
-              {theme.value}
+          {SUPPORTED_THEMES.map((theme, key) => (
+            <SelectItem value={theme.id} key={key}>
+              {theme.label}
             </SelectItem>
           ))}
         </SelectGroup>
