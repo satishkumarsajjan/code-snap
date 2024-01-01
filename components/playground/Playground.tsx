@@ -8,6 +8,7 @@ import useWindowDimensions from '@/hooks/useWindowdimensions';
 import { useEffect, useState } from 'react';
 import { Code } from '../Code/Code';
 import { Settings } from '../Settings/Settings';
+import { Surround } from '../Surround/Surround';
 
 export function Playground() {
   const { height, width } = useWindowDimensions();
@@ -25,16 +26,20 @@ export function Playground() {
   return (
     <ResizablePanelGroup
       direction={orientation}
-      className='max-w-full rounded-lg border'
+      className='max-w-full border rounded-lg'
     >
       <ResizablePanel defaultSize={75}>
-        <div className='flex h-full items-center justify-center p-6'>
-          <Code />
+        <div className='flex items-center justify-center h-full rounded-lg'>
+          <Surround>
+            <div className='shadow-md'>
+              <Code />
+            </div>
+          </Surround>
         </div>
       </ResizablePanel>
       <ResizableHandle withHandle />
       <ResizablePanel defaultSize={25}>
-        <div className='flex h-full items-center justify-center p-6'>
+        <div className='flex items-center justify-center h-full p-6'>
           <Settings />
         </div>
       </ResizablePanel>

@@ -4,6 +4,7 @@ import { useCodeMirror } from '@uiw/react-codemirror';
 import { useEffect, useRef } from 'react';
 import { color } from '@uiw/codemirror-extensions-color';
 import { EditorView } from '@codemirror/view';
+import { cn } from '@/lib/utils';
 const code = "console.log('hello world!');\n\n\n";
 // Define the extensions outside the component for the best performance.
 // If you need dynamic extensions, use React.useMemo to minimize reference changes
@@ -12,7 +13,7 @@ const code = "console.log('hello world!');\n\n\n";
 interface CodeProps {}
 
 export const Code = ({}: CodeProps) => {
-  const { language, theme, fontSize } = useStore();
+  const { language, theme, fontSize, isLineNumber } = useStore();
 
   const editor = useRef<HTMLDivElement>(null);
   const customFontSize = EditorView.theme({
@@ -25,15 +26,57 @@ export const Code = ({}: CodeProps) => {
       lineHeight: `${+fontSize * 1.5}px`,
     },
   });
+
+  const customStyles = EditorView.baseTheme({
+    '&.cm-editor': {
+      fontWeight: 400,
+    },
+
+    '&.cm-editor.cm-focused': {
+      outline: 'none',
+    },
+
+    '&.cm-gutterElement': {
+      display: 'flex',
+      justifyContent: 'flex-end',
+      paddingRight: '1rem !important',
+      letterSpacing: '.1px',
+      borderRadius: '15px',
+    },
+  });
+  const lineWrapping = EditorView.lineWrapping;
+  const setTabIndex = EditorView.contentAttributes.of({ tabIndex: '-1' });
+
   const { setContainer } = useCodeMirror({
     container: editor.current,
     theme: theme,
-    height: '200px',
+    placeholder: '//Add some code here...',
     width: '500px',
+    basicSetup: {
+      lineNumbers: isLineNumber,
+      foldGutter: false,
+      autocompletion: false,
+      indentOnInput: false,
+      highlightActiveLine: true,
+      highlightActiveLineGutter: false,
+      dropCursor: true,
+      searchKeymap: false,
+      lintKeymap: false,
+      completionKeymap: false,
+      foldKeymap: false,
+      bracketMatching: true,
+    },
 
-    extensions: [language, color, customFontSize],
+    extensions: [
+      language,
+      color,
+      customFontSize,
+      customStyles,
+      lineWrapping,
+      setTabIndex,
+    ],
 
-    value: code,
+    value: code ?? '',
   });
 
   useEffect(() => {
@@ -42,5 +85,7 @@ export const Code = ({}: CodeProps) => {
     }
   }, [editor.current]);
 
-  return <div ref={editor}></div>;
+  return (
+    <div ref={editor} className={cn('rounded-lg drop-shadow-2xl p-0')}></div>
+  );
 };

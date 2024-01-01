@@ -11,6 +11,12 @@ interface Store {
   setLanguage: (language: Extension) => void;
   fontSize: string;
   setFontSize: (fontSize: string) => void;
+  isLineNumber: boolean;
+  setIsLineNumber: (isLineNumber: boolean) => void;
+  surroundTheme: string;
+  setSurroundTheme: (surroundTheme: string) => void;
+  surroundPadding: string;
+  setSurroundPadding: (surroundPadding: string) => void;
 }
 
 export const useStore = create<Store>((set) => ({
@@ -25,5 +31,17 @@ export const useStore = create<Store>((set) => ({
   fontSize: '15',
   setFontSize(fontSize) {
     set({ fontSize: fontSize });
+  },
+  isLineNumber: true,
+  setIsLineNumber(isLineNumber) {
+    set({ isLineNumber: isLineNumber });
+  },
+  surroundTheme: 'bg-gradient-to-r from-red-500 to-orange-500',
+  setSurroundTheme(surroundTheme) {
+    set({ surroundTheme: surroundTheme });
+  },
+  surroundPadding: '16',
+  setSurroundPadding(surroundPadding) {
+    set({ surroundPadding });
   },
 }));
