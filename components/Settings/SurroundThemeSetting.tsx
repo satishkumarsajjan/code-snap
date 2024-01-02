@@ -17,7 +17,6 @@ export const SurroundThemeSettings = () => {
   return (
     <Select
       onValueChange={(value) => {
-        console.log(value);
         setSurroundTheme(value);
       }}
     >

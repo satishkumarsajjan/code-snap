@@ -20,6 +20,10 @@ interface Store {
   setSurroundTheme: (label: string) => void;
   surroundPadding: string;
   setSurroundPadding: (surroundPadding: string) => void;
+  editorWidth: string;
+  setEditorWidth: (editorWidth: string) => void;
+  title: string;
+  setTitle: (title: string) => void;
 }
 
 export const useStore = create<Store>((set) => ({
@@ -43,8 +47,16 @@ export const useStore = create<Store>((set) => ({
   setSurroundTheme(label) {
     set({ surroundTheme: find(SUPPORTED_THEMES, label) });
   },
-  surroundPadding: '16',
+  surroundPadding: '32',
   setSurroundPadding(surroundPadding) {
     set({ surroundPadding });
+  },
+  editorWidth: '500',
+  setEditorWidth(editorWidth) {
+    set({ editorWidth });
+  },
+  title: 'title.tsx',
+  setTitle(title) {
+    set({ title });
   },
 }));

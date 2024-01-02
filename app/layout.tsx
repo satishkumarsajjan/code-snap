@@ -26,7 +26,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <div className='h-screen'>
+          <div className='relative h-screen '>
             <Navbar />
             {children}
           </div>

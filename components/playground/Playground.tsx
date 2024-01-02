@@ -9,9 +9,11 @@ import { useEffect, useState } from 'react';
 import { Code } from '../Code/Code';
 import { Settings } from '../Settings/Settings';
 import { Surround } from '../Surround/Surround';
+import { useStore } from '@/hooks/store';
 
 export function Playground() {
   const { height, width } = useWindowDimensions();
+  const { title } = useStore();
   const [orientation, setOrientation] = useState<'vertical' | 'horizontal'>(
     'horizontal'
   );
@@ -32,6 +34,9 @@ export function Playground() {
         <div className='flex items-center justify-center h-full rounded-lg'>
           <Surround>
             <div className='shadow-md'>
+              <div className='flex items-center justify-center w-full bg-[#100E09] p-2 bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-70 rounded-t-lg'>
+                <p className='text-sm text-gray-200'>{`${title}`}</p>
+              </div>
               <Code />
             </div>
           </Surround>

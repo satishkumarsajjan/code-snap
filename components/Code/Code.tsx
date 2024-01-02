@@ -13,7 +13,7 @@ const code = "console.log('hello world!');\n\n\n";
 interface CodeProps {}
 
 export const Code = ({}: CodeProps) => {
-  const { language, theme, fontSize, isLineNumber } = useStore();
+  const { language, theme, fontSize, isLineNumber, editorWidth } = useStore();
 
   const editor = useRef<HTMLDivElement>(null);
   const customFontSize = EditorView.theme({
@@ -30,10 +30,13 @@ export const Code = ({}: CodeProps) => {
   const customStyles = EditorView.baseTheme({
     '&.cm-editor': {
       fontWeight: 400,
+      maxHeight: '700px',
+      minHeight: '100px',
     },
 
     '&.cm-editor.cm-focused': {
       outline: 'none',
+      border: '50px',
     },
 
     '&.cm-gutterElement': {
@@ -41,7 +44,6 @@ export const Code = ({}: CodeProps) => {
       justifyContent: 'flex-end',
       paddingRight: '1rem !important',
       letterSpacing: '.1px',
-      borderRadius: '15px',
     },
   });
   const lineWrapping = EditorView.lineWrapping;
@@ -51,7 +53,7 @@ export const Code = ({}: CodeProps) => {
     container: editor.current,
     theme: theme,
     placeholder: '//Add some code here...',
-    width: '500px',
+    width: `${editorWidth}px`,
     basicSetup: {
       lineNumbers: isLineNumber,
       foldGutter: false,
