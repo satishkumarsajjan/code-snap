@@ -17,11 +17,11 @@ import { useStore } from '@/hooks/store';
 import { Label } from '../ui/label';
 
 const FormSchema = z.object({
-  size: z.string(),
+  size: z.string().min(1),
 });
 
-export function EditorWidthSettings() {
-  const { editorWidth, setEditorWidth } = useStore();
+export function FontSizeSettings() {
+  const { fontSize, setFontSize } = useStore();
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
   });
@@ -34,23 +34,19 @@ export function EditorWidthSettings() {
           name='size'
           render={() => (
             <FormItem>
-              <FormLabel>Editor width</FormLabel>
+              <FormLabel>Font size</FormLabel>
               <FormControl>
                 <div className='flex gap-2'>
                   <Slider
-                    defaultValue={[Number(editorWidth)]}
-                    value={[Number(editorWidth)]}
-                    min={200}
-                    max={1000}
-                    step={10}
-                    onValueChange={(value) =>
-                      setEditorWidth(value[0].toString())
-                    }
+                    defaultValue={[Number(fontSize)]}
+                    value={[Number(fontSize)]}
+                    max={30}
+                    step={1}
+                    onValueChange={(value) => setFontSize(value[0].toString())}
                     className='w-5/6 transition-transform'
                   />
-
                   <Label className='w-1/6 text-muted-foreground'>
-                    {editorWidth}
+                    {fontSize}
                   </Label>
                 </div>
               </FormControl>

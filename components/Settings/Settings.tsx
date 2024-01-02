@@ -1,8 +1,10 @@
 import { EditorWidthSettings } from './EditorWidthSettings';
-import { FontSize } from './FontSize';
+import { FontSizeSettings } from './FontSizeSettings';
+
 import { LanguageSettings } from './LanguageSettings';
 import { LineNumbers } from './LineNumbers';
-import { SurroundPadding } from './SurroundPadding';
+import { SurroundPaddingSettings } from './SurroundPaddingSettings';
+
 import { SurroundThemeSettings } from './SurroundThemeSetting';
 import { ThemeSettings } from './ThemeSetting';
 import { TitleSettings } from './TitleSettings';
@@ -12,10 +14,10 @@ export const Settings = () => {
     <div className='flex flex-col gap-5'>
       <ThemeSettings />
       <LanguageSettings />
-      <FontSize />
+      <FontSizeSettings />
       <LineNumbers />
       <SurroundThemeSettings />
-      <SurroundPadding />
+      <SurroundPaddingSettings />
       <EditorWidthSettings />
       <TitleSettings />
     </div>

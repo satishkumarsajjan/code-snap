@@ -40,7 +40,7 @@ export const TitleSettings = ({}: TitleSettingsProps) => {
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className='w-2/3 space-y-6'
+          className='w-full space-y-6'
         >
           <FormField
             control={form.control}
@@ -49,7 +49,10 @@ export const TitleSettings = ({}: TitleSettingsProps) => {
               <FormItem>
                 <FormLabel>Snap Title</FormLabel>
                 <FormControl>
-                  <Input placeholder='shadcn' {...field} />
+                  <div className='flex items-center w-full max-w-full space-x-2'>
+                    <Input placeholder='Enter a title...' {...field} />
+                    <Button type='submit'>Submit</Button>
+                  </div>
                 </FormControl>
                 <FormDescription>
                   Add title along with extension.
@@ -58,7 +61,6 @@ export const TitleSettings = ({}: TitleSettingsProps) => {
               </FormItem>
             )}
           />
-          <Button type='submit'>Submit</Button>
         </form>
       </Form>
     </div>

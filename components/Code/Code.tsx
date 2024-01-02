@@ -88,6 +88,9 @@ export const Code = ({}: CodeProps) => {
   }, [editor.current]);
 
   return (
-    <div ref={editor} className={cn('rounded-lg drop-shadow-2xl p-0')}></div>
+    <div
+      ref={editor}
+      className={cn('rounded-lg drop-shadow-2xl shadow-2xl')}
+    ></div>
   );
 };
