@@ -6,7 +6,7 @@ interface NavbarProps {}
 
 export const Navbar = ({}: NavbarProps) => {
   return (
-    <nav className='absolute flex flex-wrap items-center justify-between w-full h-16 bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10'>
+    <nav className=' flex flex-wrap items-center justify-between w-full h-16 bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10'>
       <div className='px-10'>Codesnap</div>
       <ul className='flex items-center px-10'>
         <Link href={'https://twitter.com/iamsatish4564'} target='_blank'>

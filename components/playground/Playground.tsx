@@ -28,7 +28,7 @@ export function Playground() {
   return (
     <ResizablePanelGroup
       direction={orientation}
-      className='max-w-full border rounded-lg'
+      className='max-w-full border rounded-lg h-full'
     >
       <ResizablePanel defaultSize={75}>
         <div className='flex items-center justify-center h-full rounded-lg'>

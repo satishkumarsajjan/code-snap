@@ -11,15 +11,17 @@ import { TitleSettings } from './TitleSettings';
 
 export const Settings = () => {
   return (
-    <div className='flex flex-col gap-5'>
-      <ThemeSettings />
-      <LanguageSettings />
-      <FontSizeSettings />
-      <LineNumbers />
-      <SurroundThemeSettings />
-      <SurroundPaddingSettings />
-      <EditorWidthSettings />
-      <TitleSettings />
+    <div className='flex items-center justify-center h-full '>
+      <div className='flex flex-col gap-5 overflow-auto h-full'>
+        <ThemeSettings />
+        <LanguageSettings />
+        <FontSizeSettings />
+        <LineNumbers />
+        <SurroundThemeSettings />
+        <SurroundPaddingSettings />
+        <EditorWidthSettings />
+        <TitleSettings />
+      </div>
     </div>
   );
 };
