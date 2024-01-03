@@ -18,6 +18,7 @@ export const Surround = ({ children }: SurroundProps) => {
 
   return (
     <div
+      id='screenshot'
       className={cn(`rounded-lg`)}
       style={{
         padding: `${surroundPadding}px`,
