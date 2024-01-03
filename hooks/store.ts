@@ -6,17 +6,39 @@ import { javascript } from '@codemirror/lang-javascript';
 import { ThemeDefinition } from '@/types/types';
 import { find } from '@/lib/find';
 import { SUPPORTED_THEMES } from '@/lib/SThemes';
+import { languages } from '@/lib/languages';
 
+type DefaultSettings = {
+  theme: string;
+  language: string;
+  fontSize: string;
+  isLineNumber: boolean;
+  surroundTheme: string;
+  surroundPadding: string;
+  editorWidth: string;
+  title: string;
+};
+const defaultSettings: DefaultSettings = {
+  theme: 'dracula',
+  language: 'jsx',
+  fontSize: '15',
+  isLineNumber: true,
+  surroundTheme: 'sky',
+  surroundPadding: '32',
+  editorWidth: '500',
+  title: 'title.tsx',
+};
 interface Store {
-  theme: Extension;
-  setTheme: (theme: Extension) => void;
-  language: Extension;
-  setLanguage: (language: Extension) => void;
+  defaultSettings: DefaultSettings;
+  theme: string;
+  setTheme: (theme: string) => void;
+  language: string;
+  setLanguage: (language: string) => void;
   fontSize: string;
   setFontSize: (fontSize: string) => void;
   isLineNumber: boolean;
   setIsLineNumber: (isLineNumber: boolean) => void;
-  surroundTheme: ThemeDefinition;
+  surroundTheme: string;
   setSurroundTheme: (label: string) => void;
   surroundPadding: string;
   setSurroundPadding: (surroundPadding: string) => void;
@@ -27,11 +49,12 @@ interface Store {
 }
 
 export const useStore = create<Store>((set) => ({
-  theme: dracula,
+  defaultSettings: defaultSettings,
+  theme: 'dracula',
   setTheme(theme) {
     set({ theme: theme });
   },
-  language: javascript({ jsx: true }),
+  language: 'jsx',
   setLanguage(language) {
     set({ language: language });
   },
@@ -43,9 +66,9 @@ export const useStore = create<Store>((set) => ({
   setIsLineNumber(isLineNumber) {
     set({ isLineNumber: isLineNumber });
   },
-  surroundTheme: find(SUPPORTED_THEMES, 'sky'),
+  surroundTheme: 'sky',
   setSurroundTheme(label) {
-    set({ surroundTheme: find(SUPPORTED_THEMES, label) });
+    set({ surroundTheme: label });
   },
   surroundPadding: '32',
   setSurroundPadding(surroundPadding) {

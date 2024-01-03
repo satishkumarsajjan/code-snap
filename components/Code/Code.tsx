@@ -5,6 +5,8 @@ import { useEffect, useRef } from 'react';
 import { color } from '@uiw/codemirror-extensions-color';
 import { EditorView } from '@codemirror/view';
 import { cn } from '@/lib/utils';
+import { languages } from '@/lib/languages';
+import { themes } from '@/lib/themes';
 const code = "console.log('hello world!');\n\n\n";
 // Define the extensions outside the component for the best performance.
 // If you need dynamic extensions, use React.useMemo to minimize reference changes
@@ -51,7 +53,7 @@ export const Code = ({}: CodeProps) => {
 
   const { setContainer } = useCodeMirror({
     container: editor.current,
-    theme: theme,
+    theme: themes.get(theme),
     placeholder: '//Add some code here...',
     width: `${editorWidth}px`,
     basicSetup: {
@@ -70,7 +72,7 @@ export const Code = ({}: CodeProps) => {
     },
 
     extensions: [
-      language,
+      languages.get(language),
       color,
       customFontSize,
       customStyles,

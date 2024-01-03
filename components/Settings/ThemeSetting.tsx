@@ -33,7 +33,7 @@ const FormSchema = z.object({
 });
 
 export function ThemeSettings() {
-  const { setTheme } = useStore();
+  const { setTheme, theme } = useStore();
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
   });
@@ -49,10 +49,10 @@ export function ThemeSettings() {
               <FormLabel>Editor Theme</FormLabel>
               <Select
                 onValueChange={(value) => {
-                  setTheme(themes.get(value));
+                  setTheme(value);
                   field.onChange;
                 }}
-                defaultValue={field.value}
+                value={theme}
               >
                 <FormControl>
                   <SelectTrigger>

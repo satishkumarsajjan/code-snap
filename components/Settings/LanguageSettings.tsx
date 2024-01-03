@@ -33,7 +33,7 @@ const FormSchema = z.object({
 });
 
 export function LanguageSettings() {
-  const { setLanguage } = useStore();
+  const { setLanguage, language } = useStore();
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
   });
@@ -49,10 +49,10 @@ export function LanguageSettings() {
               <FormLabel>Editor Language</FormLabel>
               <Select
                 onValueChange={(value) => {
-                  setLanguage(languages.get(value));
+                  setLanguage(value);
                   field.onChange;
                 }}
-                defaultValue={field.value}
+                value={language}
               >
                 <FormControl>
                   <SelectTrigger>
